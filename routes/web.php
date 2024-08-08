@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\laravel_example\UserManagement;
 use App\Http\Controllers\dashboard\Analytics;
@@ -158,6 +159,16 @@ use App\Http\Controllers\tables\DatatableExtensions;
 use App\Http\Controllers\charts\ApexCharts;
 use App\Http\Controllers\charts\ChartJs;
 use App\Http\Controllers\maps\Leaflet;
+use App\Http\Controllers\configuracion\SacerdoteController;
+
+// rutas para el pdf
+Route::get('/sacerdotes', [SacerdoteController::class, 'index']);
+Route::get('/sacerdotes/pdf/{id}', [SacerdoteController::class, 'generatePdf']);
+
+// ruta vista sacerdotes
+Route::get('/configuracion/sacerdotes', function () {
+    return view('content.configuracion.sacerdotes'); // Vista principal que renderiza tu componente Vue.js
+})->name('sacerdotes.index');
 
 // Main Page Route
 Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics');

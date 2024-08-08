@@ -15,9 +15,9 @@
           "slug": "dashboard-analytics"
         },
         {
-          "url": "dashboard/crm",
-          "name": "CRM",
-          "slug": "dashboard-crm"
+          "url": "/configuracion/sacerdotes",
+          "name": "Sacerdotes",
+          "slug": "sacerdotes"
         },
         {
           "url": "app/ecommerce/dashboard",

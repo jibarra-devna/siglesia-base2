@@ -1,6 +1,5 @@
 import { createApp } from 'vue';
-import NombreVariable from './components/Sacerdotes.vue';
-import UserTable from './components/UserTable.vue';
+import gestionSacerdotes from './components/Sacerdotes.vue';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
 /*
@@ -13,5 +12,4 @@ import.meta.glob([
 ]);
 
 
-createApp(NombreVariable).mount('#app'); //#app es el id que se utiliza para mandar el componente a la vista
-//createApp(UserTable).mount('#app2');
+createApp(gestionSacerdotes).mount('#app'); //#app es el id que se utiliza para mandar el componente a la vista

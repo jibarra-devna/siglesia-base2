@@ -11,39 +11,42 @@
   </div>
   <br>
   <!-- comienza tabla sacerdotes-->
-  <div class="card">
-  <h5 class="card-header">Tabla Sacerdotes</h5>
-  <div class="table-responsive text-nowrap">
-    <table class="table" >
-      <thead>
-        <tr class="text-center">
-          <th >Nombre</th>
-          <th>Título</th>
-          <th>Fecha de Nacimiento</th>
-          <th>Periodo Inicio</th>
-          <th>Periodo Fin</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="sacerdote in sacerdotes" :key="sacerdote.id_sacerdote">
+<div class="card">
+  <h5 class="card-header"><b>Tabla Sacerdotes</b></h5>
+  <div class="card-body">
+    <div class="table-responsive text-nowrap">
+      <table class="table table-bordered">
+        <thead>
+          <tr class="text-center">
+            <th>Sacerdote</th>
+            <th>Fecha Nacimiento</th>
+            <th>Titulo</th>
+            <th>Inicio Periodo</th>
+            <th>Fin Periodo</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="sacerdote in sacerdotes" :key="sacerdote.id_sacerdote">
           <td class="text-left">{{ sacerdote.nombre_sacerdote }} {{ sacerdote.apellidos_sacerdote }}</td>
-          <td class="text-center">{{ sacerdote.titulo }}</td>
           <td class="text-center">{{ formatDate(sacerdote.fecha_nacimiento) }}</td>
+          <td class="text-center">{{ sacerdote.titulo }}</td>
           <td class="text-center">{{ formatDate(sacerdote.periodo_inicio) }}</td>
           <td class="text-center">{{ formatDate(sacerdote.periodo_fin) }}</td>
           <td class="text-center">
             <div class="dropdown">
               <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
               <div class="dropdown-menu">
+                <a class="dropdown-item" href="javascript:void(0);" @click="generatePdf(sacerdote.id_sacerdote)"><i class="bx bxs-file-pdf me-2"></i> Ver</a>
                 <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#agregarEditarModal" @click="openModal('edit', sacerdote)"><i class="bx bx-edit-alt me-2"></i> Editar</a>
                 <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#deleteModal" @click="confirmDelete(sacerdote)"><i class="bx bx-trash me-2"></i> Eliminar</a>
               </div>
             </div>
           </td>
         </tr>
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 <!-- termina tabla sacerdotes -->
@@ -145,6 +148,10 @@ export default {
           this.sacerdotes = response.data;
         });
     },
+    generatePdf(id) {
+      // Abre el PDF en una nueva pestaña
+      window.open(`/sacerdotes/pdf/${id}`, '_blank');
+    },
     formatDate(date) {
       if (!date) return '-'; // Manejar caso en el que la fecha es nula o vacía
       
@@ -184,7 +191,7 @@ export default {
       const modal = bootstrap.Modal.getInstance(myModalEl);
       modal.hide();
         });
-    }
+    },
   },
   mounted() {
     this.fetchSacerdotes();
