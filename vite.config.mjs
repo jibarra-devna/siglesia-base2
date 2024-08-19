@@ -3,6 +3,9 @@ import vue from "@vitejs/plugin-vue";
 import laravel from 'laravel-vite-plugin';
 import html from '@rollup/plugin-html';
 import { glob } from 'glob';
+import viteCompression from 'vite-plugin-compression';
+import viteImagemin from 'vite-plugin-imagemin';
+
 
 /**
  * Get Files from a directory
@@ -72,6 +75,23 @@ export default defineConfig({
       refresh: true
     }),
     html(),
-    libsWindowAssignment()
-  ]
+    libsWindowAssignment(),
+    [viteCompression()],
+    viteImagemin({
+      gifsicle: { optimizationLevel: 7 },
+      optipng: { optimizationLevel: 7 },
+      mozjpeg: { quality: 80 },
+      svgo: {
+        plugins: [
+          { removeViewBox: false },
+          { removeEmptyAttrs: true },
+        ],
+      },
+    })
+  ],
+  resolve: {
+    alias: {
+      '@': '/resources',
+    },
+  },
 });

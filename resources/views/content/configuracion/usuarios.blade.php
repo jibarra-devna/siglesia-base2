@@ -8,7 +8,7 @@ $customizerHidden = 'customizer-hide';
 
 @extends('layouts/layoutMaster')
 
-@section('title', 'Sacerdotes')
+@section('title', 'Usuarios')
 
 <!-- ------------------------------------------------------------- -->
 <!-- Vendor Styles -->
@@ -77,10 +77,10 @@ $customizerHidden = 'customizer-hide';
 @vite('resources/js/app.js')
 
 @section('content')
-<div id="app"></div>
-<script src="{{ mix('js/app.js') }}"></script>
+<div id="app">
+</div>
 @endsection
 
 @push('scripts')
-
+<script src="{{ asset('js/app.js') }}"></script>
 @endpush

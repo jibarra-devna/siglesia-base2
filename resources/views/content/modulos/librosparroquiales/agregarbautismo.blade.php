@@ -8,7 +8,7 @@ $customizerHidden = 'customizer-hide';
 
 @extends('layouts/layoutMaster')
 
-@section('title', 'Sacerdotes')
+@section('title', 'Agregar Bautismo')
 
 <!-- ------------------------------------------------------------- -->
 <!-- Vendor Styles -->
@@ -56,20 +56,6 @@ $customizerHidden = 'customizer-hide';
 
 <!-- Page Scripts -->
 @section('page-script')
-<script src="{{asset('assets/js/tables-datatables-basic.js')}}"></script>
-<script>
-  $(document).ready(function() {
-    // Configuración de DataTables
-    var table = $('.table').DataTable({
-      responsive: true
-    });
-
-    // Filtro global
-    $('#searchInput').on('keyup', function() {
-      table.search(this.value).draw();
-    });
-  });
-</script>
 <!-- @vite(['resources/assets/js/tables-datatables-basic.js']) -->
 @endsection
 
@@ -78,9 +64,8 @@ $customizerHidden = 'customizer-hide';
 
 @section('content')
 <div id="app"></div>
-<script src="{{ mix('js/app.js') }}"></script>
 @endsection
 
 @push('scripts')
-
+<script src="{{ mix('js/app.js') }}"></script>
 @endpush
